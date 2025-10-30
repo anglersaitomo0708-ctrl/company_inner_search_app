@@ -23,6 +23,7 @@ def display_app_title():
 
 def display_select_mode():
     """
+<<<<<<< HEAD
     サイドバーに回答モードのラジオボタンを表示
     """
     # サイドバーにタイトルを表示
@@ -44,6 +45,19 @@ def display_select_mode():
         st.sidebar.markdown("**【「社内問い合わせ」を選択した場合】**")
         st.sidebar.info("質問・要望に対して、社内文書の情報をもとに回答を得られます。")
         st.sidebar.code("【入力例】\n人事部に所属している従業員情報を一覧化して", wrap_lines=True, language=None)
+=======
+    回答モードのラジオボタンを表示
+    """
+    # 回答モードを選択する用のラジオボタンを表示
+    col1, col2 = st.columns([100, 1])
+    with col1:
+        # 「label_visibility="collapsed"」とすることで、ラジオボタンを非表示にする
+        st.session_state.mode = st.radio(
+            label="",
+            options=[ct.ANSWER_MODE_1, ct.ANSWER_MODE_2],
+            label_visibility="collapsed"
+        )
+>>>>>>> 93d38a54fa32db8192c9dcfd68c7dd529dfeceea
 
 
 def display_initial_ai_message():
