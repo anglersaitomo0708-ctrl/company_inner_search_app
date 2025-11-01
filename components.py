@@ -15,26 +15,57 @@ import constants as ct
 ############################################################
 
 def display_app_title():
-    """
-    タイトル表示
-    """
-    st.markdown(f"## {ct.APP_NAME}")
+    def display_select_mode():
+        """
+        サイドバーにモード選択を表示
+        """
+        st.sidebar.title("メニュー")
 
+    # ラジオボタンを使ってモードを選択
+    selected_mode = st.sidebar.radio(
+        "利用するモードを選択してください：",
+        (ct.ANSWER_MODE_1, ct.ANSWER_MODE_2)  # 定数で管理されている想定
+    )
 
-def display_select_mode():
-    """
-    回答モードのラジオボタンを表示
-    """
-    # 回答モードを選択する用のラジオボタンを表示
-    col1, col2 = st.columns([100, 1])
-    with col1:
-        # 「label_visibility="collapsed"」とすることで、ラジオボタンを非表示にする
-        st.session_state.mode = st.radio(
-            label="",
-            options=[ct.ANSWER_MODE_1, ct.ANSWER_MODE_2],
-            label_visibility="collapsed"
+    # 選択内容をセッションステートに保存
+    st.session_state.mode = selected_mode
+
+    # 選択したモードに応じて説明文をサイドバーに表示
+    if selected_mode == ct.ANSWER_MODE_1:
+        st.sidebar.markdown("#### 📄 社内文書検索")
+        st.sidebar.info(
+            "入力内容と関連性が高い社内文書のありかを検索できます。\n\n"
+            "**【入力例】**\n\n"
+            "社内育成方針に関するMTGの議事録"
         )
 
+    elif selected_mode == ct.ANSWER_MODE_2:
+        st.sidebar.markdown("#### 💬 社内問い合わせ")
+        st.sidebar.info(
+            "質問・要望に対して社内文書の情報をもとに回答を得られます。\n\n"
+            "**【入力例】**\n\n"
+            "人事部に所属している従業員情報を一覧化して"
+        )
+
+    # 選択内容をセッションステートに保存
+    st.session_state.mode = selected_mode
+
+    # 選択したモードに応じて説明文をサイドバーに表示
+    if selected_mode == ct.ANSWER_MODE_1:
+        st.sidebar.markdown("#### 📄 社内文書検索")
+        st.sidebar.info(
+            "入力内容と関連性が高い社内文書のありかを検索できます。\n\n"
+            "**【入力例】**\n\n"
+            "社内育成方針に関するMTGの議事録"
+        )
+
+    elif selected_mode == ct.ANSWER_MODE_2:
+        st.sidebar.markdown("#### 💬 社内問い合わせ")
+        st.sidebar.info(
+            "質問・要望に対して社内文書の情報をもとに回答を得られます。\n\n"
+            "**【入力例】**\n\n"
+            "人事部に所属している従業員情報を一覧化して"
+        )
 
 def display_initial_ai_message():
     """
