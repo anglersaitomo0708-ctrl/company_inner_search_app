@@ -14,15 +14,11 @@ import constants as ct
 # 関数定義
 ############################################################
 
-import streamlit as st
-import constants as ct
-
-def display_app_title():
-    def display_select_mode():
-        """
-        サイドバーにモード選択を表示
-        """
-        st.sidebar.title("メニュー")
+def display_select_mode():
+    """
+    サイドバーにモード選択を表示
+    """
+    st.sidebar.title("メニュー")
 
     # ラジオボタンを使ってモードを選択
     selected_mode = st.sidebar.radio(
@@ -41,7 +37,6 @@ def display_app_title():
             "**【入力例】**\n\n"
             "社内育成方針に関するMTGの議事録"
         )
-
     elif selected_mode == ct.ANSWER_MODE_2:
         st.sidebar.markdown("#### 💬 社内問い合わせ")
         st.sidebar.info(
@@ -49,6 +44,7 @@ def display_app_title():
             "**【入力例】**\n\n"
             "人事部に所属している従業員情報を一覧化して"
         )
+
 
     # 選択内容をセッションステートに保存
     st.session_state.mode = selected_mode
