@@ -14,22 +14,25 @@ import constants as ct
 # 関数定義
 ############################################################
 
+def display_app_title():
+    """アプリのタイトルを画面上部に表示"""
+    st.title("💼 社内向けドキュメント検索・問い合わせシステム")
+    st.markdown("---")  # 区切り線
+
+
 def display_select_mode():
     """
     サイドバーにモード選択を表示
     """
     st.sidebar.title("メニュー")
 
-    # ラジオボタンを使ってモードを選択
     selected_mode = st.sidebar.radio(
         "利用するモードを選択してください：",
-        (ct.ANSWER_MODE_1, ct.ANSWER_MODE_2)  # 定数で管理されている想定
+        (ct.ANSWER_MODE_1, ct.ANSWER_MODE_2)
     )
 
-    # 選択内容をセッションステートに保存
     st.session_state.mode = selected_mode
 
-    # 選択したモードに応じて説明文をサイドバーに表示
     if selected_mode == ct.ANSWER_MODE_1:
         st.sidebar.markdown("#### 📄 社内文書検索")
         st.sidebar.info(
@@ -44,6 +47,7 @@ def display_select_mode():
             "**【入力例】**\n\n"
             "人事部に所属している従業員情報を一覧化して"
         )
+
 
 
     # 選択内容をセッションステートに保存
