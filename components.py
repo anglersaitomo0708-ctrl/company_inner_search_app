@@ -44,33 +44,44 @@ def display_select_mode():
     )
 
 
-def display_app_title():
+def display_select_mode():
     """
-    タイトルを表示
+    サイドバーにモード選択を表示（session_state.mode に保存）
     """
-    st.title("社内文書検索アプリ")
+    st.sidebar.title("メニュー")
 
+    # 既に session_state に mode があればデフォルトに使う（初回は constants の1つめ）
+    default_mode = st.session_state.get("mode", ct.ANSWER_MODE_1)
 
+    # ラジオボタンでモードを選択（デフォルトを指定）
+    selected_mode = st.sidebar.radio(
+        "利用するモードを選択してください：",
+        (ct.ANSWER_MODE_1, ct.ANSWER_MODE_2),
+        index=(0 if default_mode == ct.ANSWER_MODE_1 else 1)
+    )
 
-    # 選択内容をセッションステートに保存
+    # 選択内容を session_state に保存（他箇所はこれを参照する）
     st.session_state.mode = selected_mode
 
-    # 選択したモードに応じて説明文をサイドバーに表示
-    if selected_mode == ct.ANSWER_MODE_1:
-        st.sidebar.markdown("#### 📄 社内文書検索")
-        st.sidebar.info(
-            "入力内容と関連性が高い社内文書のありかを検索できます。\n\n"
-            "**【入力例】**\n\n"
-            "社内育成方針に関するMTGの議事録"
-        )
+    # 区切り線を追加して見やすく
+    st.sidebar.markdown("---")
 
-    elif selected_mode == ct.ANSWER_MODE_2:
-        st.sidebar.markdown("#### 💬 社内問い合わせ")
-        st.sidebar.info(
-            "質問・要望に対して社内文書の情報をもとに回答を得られます。\n\n"
-            "**【入力例】**\n\n"
-            "人事部に所属している従業員情報を一覧化して"
-        )
+    # 両モードの説明を常に表示（※もし選択に応じて説明だけ変えたいなら条件分岐に変える）
+    st.sidebar.markdown("#### 📄 社内文書検索を選択した場合")
+    st.sidebar.info(
+        "入力内容と関連性が高い社内文書のありかを検索できます。\n\n"
+        "**【入力例】**\n\n"
+        "社内育成方針に関するMTGの議事録"
+    )
+
+    st.sidebar.markdown("#### 💬 社内問い合わせを選択した場合")
+    st.sidebar.info(
+        "質問・要望に対して社内文書の情報をもとに回答を得られます。\n\n"
+        "**【入力例】**\n\n"
+        "人事部に所属している従業員情報を一覧化して"
+    )
+
+
 
 def display_initial_ai_message():
     """

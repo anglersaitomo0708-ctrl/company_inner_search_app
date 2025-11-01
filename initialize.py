@@ -6,18 +6,35 @@
 # ライブラリの読み込み
 ############################################################
 import os
+import sys
+import unicodedata
 import logging
 from logging.handlers import TimedRotatingFileHandler
 from uuid import uuid4
-import sys
-import unicodedata
 from dotenv import load_dotenv
 import streamlit as st
 from docx import Document
-from langchain_community.document_loaders import WebBaseLoader
+
+# ==== LangChain関連（最新版対応） ====
+# Loader（ファイル・Webデータ読み込み）
+from langchain_community.document_loaders import (
+    WebBaseLoader,
+    CSVLoader,
+    PyPDFLoader,
+    TextLoader,
+    UnstructuredWordDocumentLoader,
+)
+
+# Splitter（テキスト分割）
 from langchain.text_splitter import CharacterTextSplitter
+
+# Embeddings（ベクトル化）
 from langchain_openai import OpenAIEmbeddings
+
+# VectorStore（ChromaベクトルDB）
 from langchain_community.vectorstores import Chroma
+
+# ==== 自作モジュール ====
 import constants as ct
 
 

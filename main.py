@@ -18,8 +18,8 @@ from initialize import initialize
 # （自作）画面表示系の関数が定義されているモジュール
 import components as cn
 # （自作）変数（定数）がまとめて定義・管理されているモジュール
-import constants as ct
-import components as cp
+import components as cn  # UI関連
+import constants as ct   # 定数関連
 
 ############################################################
 # 2. 設定関連
@@ -61,7 +61,7 @@ if not "initialized" in st.session_state:
 cn.display_app_title()
 
 # モード表示
-cp.display_select_mode()
+cn.display_select_mode()
 
 # AIメッセージの初期表示
 cn.display_initial_ai_message()
