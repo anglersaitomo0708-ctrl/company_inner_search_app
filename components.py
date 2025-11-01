@@ -67,14 +67,14 @@ def display_select_mode():
     st.sidebar.markdown("---")
 
     # 両モードの説明を常に表示（※もし選択に応じて説明だけ変えたいなら条件分岐に変える）
-    st.sidebar.markdown("#### 📄 社内文書検索を選択した場合")
+    st.sidebar.markdown("####  [「社内文書検索」を選択した場合]")
     st.sidebar.info(
         "入力内容と関連性が高い社内文書のありかを検索できます。\n\n"
         "**【入力例】**\n\n"
         "社内育成方針に関するMTGの議事録"
     )
 
-    st.sidebar.markdown("#### 💬 社内問い合わせを選択した場合")
+    st.sidebar.markdown("####  [「社内問い合わせ」を選択した場合]")
     st.sidebar.info(
         "質問・要望に対して社内文書の情報をもとに回答を得られます。\n\n"
         "**【入力例】**\n\n"
