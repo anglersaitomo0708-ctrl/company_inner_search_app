@@ -46,7 +46,7 @@ TEMPERATURE = 0.5
 # ==========================================
 # RAG参照用のデータソース系
 # ==========================================
-RAG_TOP_FOLDER_PATH = "./data"
+RAG_TOP_FOLDER_PATH = "C:/Users/angle/OneDrive/デスクトップ/最終課題/company_inner_search_app/data"
 SUPPORTED_EXTENSIONS = {
     ".pdf": PyMuPDFLoader,
     ".docx": Docx2txtLoader,
