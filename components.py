@@ -48,7 +48,7 @@ def display_select_mode():
     st.sidebar.info(
         "入力内容と関連性が高い社内文書のありかを検索できます。\n\n"
         "**【入力例】**\n\n"
-        "社内育成方針に関するMTGの議事録"
+        "社員の育成方針に関するMTGの議事録"
     )
 
     st.sidebar.markdown("####  [「社内問い合わせ」を選択した場合]")
