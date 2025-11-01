@@ -23,29 +23,6 @@ def display_app_title():
 
 def display_select_mode():
     """
-<<<<<<< HEAD
-    サイドバーに回答モードのラジオボタンを表示
-    """
-    # サイドバーにタイトルを表示
-    st.sidebar.title("利用目的を選択")
-
-    # サイドバーにラジオボタンを設置
-    st.session_state.mode = st.sidebar.radio(
-        "利用目的を選択してください",
-        [ct.ANSWER_MODE_1, ct.ANSWER_MODE_2]
-    )
-
-    # 選択モードに応じた説明をサイドバーに表示
-    if st.session_state.mode == ct.ANSWER_MODE_1:
-        st.sidebar.markdown("**【「社内文書検索」を選択した場合】**")
-        st.sidebar.info("入力内容と関連性が高い社内文書のありかを検索できます。")
-        st.sidebar.code("【入力例】\n社内育成方針に関するMTGの議事録", wrap_lines=True, language=None)
-
-    elif st.session_state.mode == ct.ANSWER_MODE_2:
-        st.sidebar.markdown("**【「社内問い合わせ」を選択した場合】**")
-        st.sidebar.info("質問・要望に対して、社内文書の情報をもとに回答を得られます。")
-        st.sidebar.code("【入力例】\n人事部に所属している従業員情報を一覧化して", wrap_lines=True, language=None)
-=======
     回答モードのラジオボタンを表示
     """
     # 回答モードを選択する用のラジオボタンを表示
@@ -57,7 +34,6 @@ def display_select_mode():
             options=[ct.ANSWER_MODE_1, ct.ANSWER_MODE_2],
             label_visibility="collapsed"
         )
->>>>>>> 93d38a54fa32db8192c9dcfd68c7dd529dfeceea
 
 
 def display_initial_ai_message():
@@ -183,8 +159,8 @@ def display_search_llm_response(llm_response):
         if "page" in llm_response["context"][0].metadata:
             # ページ番号を取得
             main_page_number = llm_response["context"][0].metadata["page"]
-            # 「メインドキュメントのファイルパス」と「ページ番号」を表示
-            st.success(f"{main_file_path}", icon=icon)
+            # 「メインドキュメントのファイルパス」と「ページ番号」を表示 {main_page_number}を追加
+            st.success(f"{main_file_path}（{main_page_number}ページ）", icon=icon)
         else:
             # 「メインドキュメントのファイルパス」を表示
             st.success(f"{main_file_path}", icon=icon)
@@ -319,8 +295,8 @@ def display_contact_llm_response(llm_response):
             if "page" in document.metadata:
                 # ページ番号を取得
                 page_number = document.metadata["page"]
-                # 「ファイルパス」と「ページ番号」
-                file_info = f"{file_path}"
+                # 「ファイルパス」と「ページ番号」 {page_number}を追加
+                file_info = f"{file_path}（{page_number}ページ）"
             else:
                 # 「ファイルパス」のみ
                 file_info = f"{file_path}"
